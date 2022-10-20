@@ -200,7 +200,7 @@ export async function video_basic_info(url: string, options: InfoOptions = {}): 
     const badge = ownerInfo?.badges?.[0]?.metadataBadgeRenderer?.style?.toLowerCase();
     const html5player = `https://www.youtube.com${body.split('"jsUrl":"')[1].split('"')[0]}`;
     const related: string[] = [];
-    initial_response.contents.twoColumnWatchNextResults.secondaryResults.secondaryResults.results.forEach(
+    initial_response.contents.twoColumnWatchNextResults.secondaryResults?.secondaryResults?.results?.forEach(
         (res: any) => {
             if (res.compactVideoRenderer)
                 related.push(`https://www.youtube.com/watch?v=${res.compactVideoRenderer.videoId}`);
@@ -233,7 +233,7 @@ export async function video_basic_info(url: string, options: InfoOptions = {}): 
         });
     }
     const rawChapters =
-        initial_response.playerOverlays.playerOverlayRenderer.decoratedPlayerBarRenderer?.decoratedPlayerBarRenderer.playerBar?.multiMarkersPlayerBarRenderer.markersMap.find(
+        initial_response.playerOverlays.playerOverlayRenderer.decoratedPlayerBarRenderer?.decoratedPlayerBarRenderer.playerBar?.multiMarkersPlayerBarRenderer?.markersMap?.find(
             (m: any) => m.key === 'DESCRIPTION_CHAPTERS'
         )?.value?.chapters;
     const chapters: VideoChapter[] = [];
